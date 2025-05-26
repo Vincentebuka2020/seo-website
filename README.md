@@ -21,25 +21,17 @@ Deploy an Nginx-hosted site on Ubuntu using an EC2 instance and secure it with L
 
 ## 2. Initial Server Setup
 
-```bash
-
 # Update and install basic tools
 sudo apt update && sudo apt upgrade -y
 sudo apt install nginx curl nano unzip -y
 
-```
-
----
 
 ### 3.  Domain & DNS Configuration
 
 1. Logged into domain registrar (e.g., Namecheap).
 2. Added the following A record:
-    - **Host:** `@`
-    - **Value:** `<your EC2 public IP>`
-3. (Optional) Also added:
-    - **Host:** `www`
-    - **Value:** `<your EC2 public IP>`
+    - **Host:** SEO
+    - **Value:** `<EC2 public IP>`
 
 📝 *Propagation may take a few minutes.*
 
@@ -47,7 +39,6 @@ sudo apt install nginx curl nano unzip -y
 
 I used a free static template from TemplateMo.
 
-```bash
 wget <https://templatemo.com/download/templatemo_582_tale_seo_agency> -O tale_seo_agency.zip
 unzip tale_seo_agency.zip -d tale_seo_agency
 sudo mv tale_seo_agency/* /var/www/html/
@@ -56,15 +47,10 @@ sudo rm /var/www/html/index.nginx-debian.html
 
 ### 5.Nginx Configuration
 
-```bash
-
 sudo nano /etc/nginx/sites-available/default
-
-```
 
 **Configured a basic server block:**
 
-```
 server {
     listen 80;
     server_name seo.payroyal.online;
@@ -77,56 +63,43 @@ server {
     }
 }
 
-```
 
-```bash
 # Test and reload Nginx
 sudo nginx -t
 sudo systemctl reload nginx
 
-```
-
----
 
 ### 5. 🧩 Fixing DNS Resolution Issues (resolvectl)
 
-When i dig or resolvectl and it  shows DNS errors ( SERVFAIL), i  updated the DNS config:
+When i dig or resolvectl and it  shows DNS errors ( SERVFAIL), i was able to trobleshoot the error by updating the DNS config using 
 
-```bash
 sudo nano /etc/systemd/resolved.conf
-```
 
 Then Modify:
-
-```
 
 [Resolve]
 DNS=8.8.8.8 1.1.1.1
 FallbackDNS=8.8.4.4 1.0.0.1
-```
 
 And Restart the resolver:
 
-```bash
 
 sudo systemctl restart systemd-resolved
-```
 
 Check if DNS is resolved:
 
-```bash
 
 dig seo.payroyal.online
+and it was successfull 
 
-```
 
 ### 6. Installing SSL with Certbot
 
 i installed Install Certbot and the Nginx plugin:
 
-```bash
+
 sudo apt install certbot python3-certbot-nginx -y
-```
+
 
 Run Certbot for my domain:
 
@@ -149,9 +122,9 @@ sudo certbot --nginx -d seo.payroyal.online
 
 ✅ Checked renewal status:
 
-```bash
+
 sudo systemctl list-timers | grep certbot
-```
+
 
 ### 7. Final Notes
 
