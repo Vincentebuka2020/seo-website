@@ -25,7 +25,7 @@ Deploy an Nginx-hosted site on Ubuntu using an EC2 instance and secure it with L
 
 # Update and install basic tools
 sudo apt update && sudo apt upgrade -y
-sudo apt install nginx curl nano unzip -y
+sudo apt install nginx -y
 
 ```
 
