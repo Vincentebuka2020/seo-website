@@ -75,9 +75,9 @@ server {
 }
 
 ```
+# Test and reload Nginx
 
 ```
-# Test and reload Nginx
 sudo nginx -t
 sudo systemctl reload nginx
 
@@ -158,4 +158,3 @@ The website is now live, secured with SSL, and auto-renewing via Certbot.
 
 Website is now live and secure: https://seo.payroyal.online
 
-![image.png](attachment:e59b2e57-1d8d-4b43-ade3-13cdff524ed0:image.png)
