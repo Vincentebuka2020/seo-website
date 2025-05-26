@@ -85,9 +85,9 @@ sudo systemctl reload nginx
 
 ---
 
-### 5. 🧩 Fixing DNS Resolution Issues (resolvectl)
+### 6. Fixing DNS Resolution Issues (resolvectl)
 
-When i dig or resolvectl and it  shows DNS errors ( SERVFAIL), i was able to trobleshoot the error by updating the DNS configuration using:
+When i dig and resolvectl and it  shows DNS errors ( SERVFAIL), i was able to trobleshoot the error by updating the DNS configuration using:
 
 ```
 sudo nano /etc/systemd/resolved.conf
@@ -117,7 +117,7 @@ dig seo.payroyal.online
 
 ```
 
-### 6. Installing SSL with Certbot
+### 7. Installing SSL with Certbot
 
 i installed Install Certbot and the Nginx plugin:
 
@@ -138,7 +138,7 @@ sudo certbot --nginx -d seo.payroyal.online
 - Enabled HTTP to HTTPS redirect
 - Scheduled automatic renewal
 
-### **6. Verifying HTTPS & Renewal**
+### 7. Verifying HTTPS & Renewal**
 
 ✅ Confirmed green lock at: https://seo.payroyal.online
 
@@ -150,7 +150,7 @@ sudo certbot --nginx -d seo.payroyal.online
 sudo systemctl list-timers | grep certbot
 ```
 
-### 7. Final Notes
+### 8. Final Notes
 
 Tools like dig and resolvectl were helpful for DNS debugging.
 
